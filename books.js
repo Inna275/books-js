@@ -3,6 +3,7 @@
 const DELAY = 1000;
 const MAX_RATING = 5;
 const MIN_RATING = 0;
+const RED = '\x1b[31m';
 
 const bookCatalog = [
   {
@@ -96,7 +97,7 @@ const main = async () => {
     const filtered = filterBooks(category, rated);
     checkEmpty(filtered);
   } catch (err) {
-    console.error(err);
+    console.error(`${RED}${err}`);
   }
 };
 
