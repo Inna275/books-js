@@ -84,11 +84,20 @@ const filterBooks = (category, books) => {
   return booksInCategory;
 };
 
+const checkEmpty = (items) => {
+  if (items.length === 0) throw 'No items found.';
+};
+
 const main = async () => {
-  const fetched = await simulateFetch(bookCatalog);
-  const rated = formulateRatings(fetched);
-  const category = 'Programming';
-  const filtered = filterBooks(category, rated);
+  try {
+    const fetched = await simulateFetch(bookCatalog);
+    const rated = formulateRatings(fetched);
+    const category = 'Programming';
+    const filtered = filterBooks(category, rated);
+    checkEmpty(filtered);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 main();
