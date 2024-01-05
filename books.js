@@ -1,6 +1,8 @@
 'use strict';
 
 const DELAY = 1000;
+const MAX_RATING = 5;
+const MIN_RATING = 0;
 
 const bookCatalog = [
   {
@@ -51,8 +53,26 @@ const simulateFetch = (data) =>
     }, DELAY);
   });
 
+const calculateRating = ({ likes, dislikes }) => {
+  const totalVotes = likes + dislikes;
+  const rating = totalVotes ? (likes / totalVotes) * MAX_RATING : MIN_RATING;
+  return rating;
+};
+
+const formulateRatings = (items) => {
+  const itemsWithRatings = items.map((item) => {
+    const rating = calculateRating(item);
+    return {
+      ...item,
+      rating,
+    };
+  });
+  return itemsWithRatings;
+};
+
 const main = async () => {
   const fetched = await simulateFetch(bookCatalog);
+  const rated = formulateRatings(fetched);
 };
 
 main();
