@@ -89,6 +89,14 @@ const checkEmpty = (items) => {
   if (items.length === 0) throw 'No items found.';
 };
 
+const printBooks = (books) => {
+  for (const { title, author, rating } of books) {
+    console.log(
+      `Title: ${title}, Author: ${author}, Rating: ${rating.toFixed(1)}`,
+    );
+  }
+};
+
 const main = async () => {
   try {
     const fetched = await simulateFetch(bookCatalog);
@@ -96,6 +104,7 @@ const main = async () => {
     const category = 'Programming';
     const filtered = filterBooks(category, rated);
     checkEmpty(filtered);
+    printBooks(filtered);
   } catch (err) {
     console.error(`${RED}${err}`);
   }
