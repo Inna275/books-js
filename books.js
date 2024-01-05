@@ -1,5 +1,7 @@
 'use strict';
 
+const DELAY = 1000;
+
 const bookCatalog = [
   {
     title: 'Clean Code',
@@ -41,3 +43,10 @@ const bookCatalog = [
     dislikes: 5,
   },
 ];
+
+const simulateFetch = (data) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(data);
+    }, DELAY);
+  });
