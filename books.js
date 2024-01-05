@@ -70,9 +70,25 @@ const formulateRatings = (items) => {
   return itemsWithRatings;
 };
 
+const filterBooks = (category, books) => {
+  const booksInCategory = [];
+  for (const book of books) {
+    if (book.category === category) {
+      booksInCategory.push({
+        title: book.title,
+        author: book.author,
+        rating: book.rating,
+      });
+    }
+  }
+  return booksInCategory;
+};
+
 const main = async () => {
   const fetched = await simulateFetch(bookCatalog);
   const rated = formulateRatings(fetched);
+  const category = 'Programming';
+  const filtered = filterBooks(category, rated);
 };
 
 main();
