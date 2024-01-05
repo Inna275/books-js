@@ -50,3 +50,9 @@ const simulateFetch = (data) =>
       resolve(data);
     }, DELAY);
   });
+
+const main = async () => {
+  const fetched = await simulateFetch(bookCatalog);
+};
+
+main();
